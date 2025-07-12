@@ -12,13 +12,13 @@ st.set_page_config(layout="wide", page_title="Global Cancer Rate Map")
 st.title("🌍 Global Cancer Rate per Capita by Country (ASR, 2022)")
 st.markdown(
     """
-    **ASR = Age-Standardized Rate per 100,000 people**  
+    **ASR = Age-Standardized Rate per 100,000 people**
     Data visualized for select countries.
     """
 )
 
 # 1. Load base world map from GeoPandas
-world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+world = gpd.read_file("/content/ne_110m_admin_0_countries.shp")
 
 # 2. Cancer incidence data (ASR per 100,000 people)
 cancer_data = {
@@ -26,7 +26,7 @@ cancer_data = {
     'New Zealand': 422.5,
     'Ireland': 375.6,
     'Hungary': 368.1,
-    'United States': 362.2,
+    'United States of America': 362.2,
     'Belgium': 356.7,
     'France': 352.1,
     'Netherlands': 350.2,
@@ -54,12 +54,12 @@ cancer_data = {
 
 # 3. Convert cancer data to DataFrame
 df_cancer = pd.DataFrame({
-    'name': list(cancer_data.keys()),
+    'ADMIN': list(cancer_data.keys()),
     'cancer_asr': list(cancer_data.values())
 })
-
+#print(world)
 # 4. Merge world GeoDataFrame with cancer data
-world = world.merge(df_cancer, on='name', how='left')
+world = world.merge(df_cancer, on='ADMIN', how='left')
 
 # 5. Plotting the map
 fig, ax = plt.subplots(1, 1, figsize=(18, 10))
