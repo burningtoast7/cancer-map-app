@@ -6,7 +6,7 @@ This app visualizes the age-standardized cancer incidence rate (ASR) per 100,000
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
+   git clone https://github.com/<burningtoast7>/<cancer-map-app>.git
    cd <your-repo>
    ```
 2. Install dependencies:
